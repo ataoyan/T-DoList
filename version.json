@@ -1,0 +1,14 @@
+{
+  "version": "0.1.0",
+  "name": "T-DoList",
+  "description": "轻量级桌面任务清单应用 - 简洁高效的个人任务管理工具",
+  "author": "ATao",
+  "repository": {
+    "url": "https://github.com/ataoyan/T-DoList",
+    "name": "T-DoList"
+  },
+  "build": {
+    "date": "2024-01-01",
+    "environment": "production"
+  }
+}

@@ -1,0 +1,7 @@
+<svg width="32" height="32" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景圆形 - 使用CSS变量 -->
+  <circle cx="256" cy="256" r="240" fill="var(--theme-color, #2196f3)"/>
+  
+  <!-- 打勾标记 - 调大尺寸 -->
+  <path d="M180 256 L220 316 L340 176" stroke="#ffffff" stroke-width="40" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

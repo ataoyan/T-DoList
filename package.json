@@ -1,0 +1,26 @@
+{
+  "name": "t-dolist",
+  "version": "0.1.0",
+  "description": "轻量级桌面任务清单应用 - 简洁高效的个人任务管理工具",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build",
+    "sync-version": "node scripts/sync-version.js"
+  },
+  "dependencies": {
+    "vue": "^3.4.0",
+    "@tauri-apps/api": "^2.0.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "vue-tsc": "^2.0.0"
+  }
+}
