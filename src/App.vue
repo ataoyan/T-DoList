@@ -196,10 +196,11 @@
         <div class="pagination-info">
           <span class="page-numbers">
             <button 
-              v-for="page in totalPages" 
+              v-for="page in visiblePages" 
               :key="page"
-              @click.stop="goToPage(page)"
-              :class="['page-btn', { active: currentPage === page }]"
+              @click.stop="page !== '...' && goToPage(page as number)"
+              :class="['page-btn', { active: currentPage === page, ellipsis: page === '...' }]"
+              :disabled="page === '...'"
             >
               {{ page }}
             </button>
@@ -607,6 +608,55 @@ const paginatedTasks = computed(() => {
   const start = (currentPage.value - 1) * maxVisibleTasks.value
   const end = start + maxVisibleTasks.value
   return filteredTasks.value.slice(start, end)
+})
+
+// 智能分页：只显示相关的页码
+const visiblePages = computed(() => {
+  const total = totalPages.value
+  const current = currentPage.value
+  const pages: (number | string)[] = []
+  
+  if (total <= 7) {
+    // 如果总页数少于等于7页，显示所有页码
+    for (let i = 1; i <= total; i++) {
+      pages.push(i)
+    }
+  } else {
+    // 总页数超过7页，使用智能显示策略
+    pages.push(1) // 总是显示第1页
+    
+    if (current > 4) {
+      // 如果当前页离第1页较远，显示省略号
+      pages.push('...')
+    }
+    
+    // 计算需要显示的页码范围
+    let startPage = Math.max(2, current - 2)
+    let endPage = Math.min(total - 1, current + 2)
+    
+    // 确保在边界附近时显示更多页
+    if (current <= 4) {
+      endPage = Math.min(5, total - 1)
+    } else if (current >= total - 3) {
+      startPage = Math.max(2, total - 4)
+    }
+    
+    // 添加连续页码
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i)
+    }
+    
+    if (current < total - 3) {
+      // 如果当前页离最后一页较远，显示省略号
+      pages.push('...')
+    }
+    
+    if (total > 1) {
+      pages.push(total) // 总是显示最后一页
+    }
+  }
+  
+  return pages
 })
 
 // 获取勾选按钮样式
@@ -2409,7 +2459,7 @@ html, body {
 }
 
 .page-btn {
-  width: 28px;
+  min-width: 28px;
   height: 28px;
   border: none;
   border-radius: 14px;
@@ -2422,9 +2472,10 @@ html, body {
   font-size: 14px;
   font-weight: 500;
   transition: all 0.2s ease;
+  padding: 0 8px;
 }
 
-.page-btn:hover {
+.page-btn:hover:not(:disabled) {
   background: rgba(0, 0, 0, 0.08);
 }
 
@@ -2433,17 +2484,33 @@ html, body {
   color: white;
 }
 
+.page-btn.ellipsis {
+  cursor: default;
+  color: #9e9e9e;
+  min-width: auto;
+  padding: 0 4px;
+}
+
+.page-btn:disabled {
+  cursor: not-allowed;
+  opacity: 1;
+}
+
 .dark-mode .page-btn {
   color: #b0b0b0;
 }
 
-.dark-mode .page-btn:hover {
+.dark-mode .page-btn:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.12);
 }
 
 .dark-mode .page-btn.active {
   background: var(--theme-color);
   color: white;
+}
+
+.dark-mode .page-btn.ellipsis {
+  color: #666666;
 }
 
 .stats {
