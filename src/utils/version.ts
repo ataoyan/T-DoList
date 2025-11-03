@@ -18,7 +18,7 @@ export interface VersionInfo {
 export function getVersionInfo(): VersionInfo {
   // 在构建时，这些信息会被注入
   return {
-    version: import.meta.env.VITE_APP_VERSION || '0.1.0',
+    version: import.meta.env.VITE_APP_VERSION || '0.2.0',
     name: import.meta.env.VITE_APP_NAME || 'T-DoList',
     description: import.meta.env.VITE_APP_DESCRIPTION || '轻量级桌面任务清单应用',
     author: import.meta.env.VITE_APP_AUTHOR || 'ATao',

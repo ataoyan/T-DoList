@@ -5,7 +5,7 @@
   
   **轻量级桌面任务清单应用**
   
-  [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/ataoyan/T-DoList)
+  [![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](https://github.com/ataoyan/T-DoList)
   [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
   [![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](https://github.com/ataoyan/T-DoList)
   [![Tauri](https://img.shields.io/badge/built%20with-Tauri-FFC131.svg)](https://tauri.app/)
@@ -130,11 +130,14 @@ npm run tauri:dev
 # 构建生产版本
 npm run tauri:build
 
-# 检查代码质量
-npm run lint
 ```
 
 ## 📝 更新日志
+
+### v0.2.0 (2025-01-XX)
+
+- 🐛 **修复** 任务数量过多时分页按钮超出页面的问题
+- 🎨 **优化** 完成任务后不再自动切换到已完成页面，提供更流畅的操作体验
 
 ### v0.1.0 (2025-10-25)
 

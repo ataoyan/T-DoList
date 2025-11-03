@@ -734,9 +734,7 @@ const confirmComplete = () => {
     showFireworks.value = true
     setTimeout(() => {
       showFireworks.value = false
-      // 动画结束后切换到已完成页面
-      activeTab.value = 'completed'
-    }, 3000) // 3秒后自动关闭烟花动画并切换页面
+    }, 2000) // 3秒后自动关闭烟花动画
   }
 }
 
